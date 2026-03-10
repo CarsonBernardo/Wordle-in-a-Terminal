@@ -6,5 +6,5 @@ A simple Wordle game written in Python.
 
 
 ## Project specifics:
-- 2291 words to be selected as the mystery word.
+- 2291 words to be selected from as the mystery word.
 - 10757 words marked as valid guesses.
