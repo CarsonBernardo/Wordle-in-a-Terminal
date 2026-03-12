@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Wordle in the Browser</title>
+    <link rel="stylesheet" href="https://pyscript.net" />
+    <script type="module" src="https://pyscript.net"></script>
+</head>
+<body>
+    <h1>Wordle Python Game</h1>
+    <div id="output"></div>
+
+    <py-config>
+        [[fetch]]
+        files = ["Wordle.py", "words.txt", "guesses.txt"]
+    </py-config>
+
+    <script type="py">
+        from pyscript import display
+        import Wordle 
+        # Note: If Wordle.py has a 'main()' function, call it here:
+        # Wordle.main()
+    </script>
+</body>
+</html>
