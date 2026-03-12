@@ -6,6 +6,7 @@ A simple Wordle game written in Python.
 2. Run **_Wordle.py_**.
 **Option B:**
 I experiemented with Replit and had my code uploaded for web-based play. Try it out here!
+
 https://wordle-terminal--CarsonBernardo.replit.app
 ## Rules of Wordle:
 - Each guess must be a valid five-letter word.
