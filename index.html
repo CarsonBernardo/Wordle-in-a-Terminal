@@ -2,24 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Wordle in the Browser</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Python Wordle</title>
+    <!-- CSS for the terminal look -->
     <link rel="stylesheet" href="https://pyscript.net" />
     <script type="module" src="https://pyscript.net"></script>
+    <style>
+        body { background-color: #121213; color: white; font-family: monospace; padding: 20px; }
+        #game-terminal { height: 90vh; width: 100%; border: 1px solid #3a3a3c; }
+    </style>
 </head>
 <body>
-    <h1>Wordle Python Game</h1>
-    <div id="output"></div>
+    <h1>Wordle Terminal</h1>
+    
+    <!-- This creates the interactive terminal window -->
+    <script type="py" terminal>
+import random
+from pyscript import window
 
+# --- YOUR CODE START ---
+def load_words(filename):
+    try:
+        with open(filename, 'r') as f:
+            words = [line.strip().upper() for line in f if len(line.strip()) == 5]
+        return words
+    except Exception:
+        return []
+
+def get_feedback(guess, secret_word):
+    feedback = []
+    secret_word_chars = list(secret_word)
+    guess_chars = list(guess)
+    for i in range(len(guess)):
+        if guess_chars[i] == secret_word_chars[i]:
+            feedback.append('🟩')
+            secret_word_chars[i] = None
+            guess_chars[i] = None
+        else:
+            feedback.append(None)
+    for i in range(len(guess)):
+        if feedback[i] is None:
+            if guess_chars[i] in secret_word_chars:
+                feedback[i] = '🟨'
+                secret_word_chars[secret_word_chars.index(guess_chars[i])] = None
+            else:
+                feedback[i] = '⬛'
+    return feedback
+
+def print_keyboard(keyboard_status):
+    rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"]
+    print("\nKeyboard:")
+    for row in rows:
+        line = ""
+        for char in row:
+            line += f"{char}{keyboard_status.get(char, '⬜')} "
+        print(line)
+
+def main():
+    print("Welcome to Wordle! (Loading files...)")
+    
+    # These files must exist in your GitHub Repo
+    mystery_words = load_words("words.txt")
+    valid_guesses = load_words("guesses.txt")
+    
+    if not mystery_words:
+        print("Error: Could not load words.txt. Make sure it is in your repo!")
+        return
+
+    all_valid_words = set(mystery_words + valid_guesses)
+    secret_word = random.choice(mystery_words)
+    attempts = 6
+    keyboard_status = {chr(i): '⬜' for i in range(65, 91)}
+
+    while attempts > 0:
+        # PyScript terminal will show a browser prompt for input()
+        guess = window.prompt(f"Enter a 5-letter guess ({attempts} attempts left):")
+        if not guess: break
+        guess = guess.upper()
+
+        if len(guess) != 5:
+            print("Invalid length. Use 5 letters.")
+            continue
+        
+        if guess not in all_valid_words:
+             print("Not a valid word.")
+             continue
+
+        feedback = get_feedback(guess, secret_word)
+        print(" ".join(list(guess)))
+        print(" ".join(feedback))
+
+        for char, emoji in zip(guess, feedback):
+            current_status = keyboard_status[char]
+            if emoji == '🟩': keyboard_status[char] = emoji
+            elif emoji == '🟨' and current_status != '🟩': keyboard_status[char] = emoji
+            elif emoji == '⬛' and current_status == '⬜': keyboard_status[char] = emoji
+
+        print_keyboard(keyboard_status)
+
+        if guess == secret_word:
+            print("Congratulations! You won!")
+            break
+        attempts -= 1
+
+    if attempts == 0:
+        print(f"Game over! Word was: {secret_word}")
+
+main()
+# --- YOUR CODE END ---
+    </script>
+
+    <!-- This configuration tells PyScript to fetch your text files -->
     <py-config>
         [[fetch]]
-        files = ["Wordle.py", "words.txt", "guesses.txt"]
+        files = ["words.txt", "guesses.txt"]
     </py-config>
-
-    <script type="py">
-        from pyscript import display
-        import Wordle 
-        # Note: If Wordle.py has a 'main()' function, call it here:
-        # Wordle.main()
-    </script>
 </body>
 </html>
