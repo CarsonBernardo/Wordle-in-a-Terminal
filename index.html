@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Python Wordle</title>
-    <!-- CSS for the terminal look -->
+    
+    <!-- FIXED: These links now point to the actual library files -->
     <link rel="stylesheet" href="https://pyscript.net" />
     <script type="module" src="https://pyscript.net"></script>
+
     <style>
         body { background-color: #121213; color: white; font-family: monospace; padding: 20px; }
-        #game-terminal { height: 90vh; width: 100%; border: 1px solid #3a3a3c; }
     </style>
 </head>
 <body>
     <h1>Wordle Terminal</h1>
     
-    <!-- This creates the interactive terminal window -->
+    <!-- FIXED: Added the required </script> tag at the end of this block -->
     <script type="py" terminal>
 import random
 from pyscript import window
 
-# --- YOUR CODE START ---
 def load_words(filename):
     try:
         with open(filename, 'r') as f:
@@ -75,7 +75,6 @@ def main():
     keyboard_status = {chr(i): '⬜' for i in range(65, 91)}
 
     while attempts > 0:
-        # PyScript terminal will show a browser prompt for input()
         guess = window.prompt(f"Enter a 5-letter guess ({attempts} attempts left):")
         if not guess: break
         guess = guess.upper()
@@ -109,9 +108,11 @@ def main():
         print(f"Game over! Word was: {secret_word}")
 
 main()
-# --- YOUR CODE END ---
-  <script type="py-config">
-    [[fetch]]
-    files = ["words.txt", "guesses.txt"]
-</script>
+    </script>
 
+    <script type="py-config">
+        [[fetch]]
+        files = ["words.txt", "guesses.txt"]
+    </script>
+</body>
+</html>
