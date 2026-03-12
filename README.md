@@ -20,6 +20,6 @@ A simple Wordle game written in Python.
 - If the tile turns gray, the letter is not in the word.
 - If you guess the word within 6 guesses, you win! If you don't, you lose. 
 
-## Project specifics:
+## Project facts:
 - 2291 words to be selected from as the mystery word.
 - 10757 words marked as valid guesses.
