@@ -10,7 +10,7 @@ A simple Wordle game written in Python.
 **Option B:**
 - I experiemented with Replit and had my code uploaded for web-based play. Try it out here!
 - https://wordle-terminal--CarsonBernardo.replit.app
-- I directly uploaded my code to Replit, and it made it playable in a web browser enviorment. I am not responsible for making the UI elements, I just provided the backbone of the Wordle game.
+- I directly uploaded my code to Replit, and it made it playable in a web browser environment. I am not responsible for making the UI elements, I just provided the backbone of the Wordle game.
 
 ## Rules of Wordle:
 - Each guess must be a valid five-letter word.
