@@ -5,7 +5,7 @@ A simple Wordle game written in Python.
 
 **Option A:**
 1. Make sure _**Wordle.py**_, _**guesses.txt**_ and _**words.txt**_ are all at the same directory.
-2. Run **_Wordle.py_**.
+2. Run **python Wordle.py** in cmd
 
 **Option B:**
 - I experiemented with Replit and had my code uploaded for web-based play. Try it out here!
