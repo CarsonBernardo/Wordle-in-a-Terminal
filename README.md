@@ -26,4 +26,4 @@ A simple Wordle game written in Python.
 
 ## Video Links
 - https://youtu.be/VTg0-DRO2eE?si=hfiHUVE3tB5mc_vi
-- https://youtu.be/VTg0-DRO2eE?si=jWYUS8dazx3Uqhwv
+- https://youtu.be/lkXVkOIfoHk?si=9LWIemXYxFPZNmh-
